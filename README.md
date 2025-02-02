@@ -87,6 +87,32 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
+
+
+### Настройте авторизацию через Google и Telegram
+ Добавьте следующие настройки в `settings.py` для использования аутентификации через `Google и Telegram`:
+
+
+```ini
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': 'ваш_новый_client_id_google',
+            'secret': 'ваш_новый_client_secret_google',
+            'key': ''
+        }
+    },
+    'telegram': {
+        'APP': {
+            'client_id': 'ваш_новый_telegram_bot_name',  # Имя бота без @
+            'secret': 'ваш_новый_telegram_bot_token',  # Токен от BotFather
+        },
+        'AUTH_PARAMS': {'auth_date_validity': 100},
+    }
+}
+```
+
+
 ### Примените миграции
 
 Примените миграции для настройки базы данных:
