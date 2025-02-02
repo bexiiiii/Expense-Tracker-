@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление Email</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Mulish', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .menu {
+      margin-bottom: 20px;
+    }
+    .menu a {
+      margin-right: 15px;
+    }
+    .warning {
+      font-size: 1.1rem;
+      color: #856404;
+      background-color: #fff3cd;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .profile-info {
+      margin-bottom: 20px;
+    }
+    .profile-info img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .profile-info h3 {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <!-- Меню управления аккаунтом -->
+    <div class="menu">
+      <a href="{% url 'account_email' %}" class="btn btn-outline-primary">Change Email</a>
+      <a href="{% url 'account_change_password' %}" class="btn btn-outline-secondary">Change Password</a>
+      <a href="{% url 'socialaccount_connections' %}" class="btn btn-outline-info">Account Connections</a>
+      <a href="{% url 'account_logout' %}" class="btn btn-outline-danger">Sign Out</a>
+      <a href="{% url 'home' %}" class="btn btn-outline-secondary">Назад</a>
+    </div>
+
+    <!-- Блок с информацией о профиле -->
+    <div class="profile-info">
+      <div class="text-center">
+        {% if user.profile.image %}
+          <img src="{{ user.profile.image.url }}" alt="Profile Picture">
+        {% else %}
+          <img src="https://via.placeholder.com/100" alt="Default Profile Picture">
+        {% endif %}
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.get_full_name }}</p>
+      </div>
+    </div>
+
+    <!-- Блок Email Addresses -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Email Addresses</h3>
+      </div>
+      <div class="card-body">
+        <p class="warning">
+          Warning: You currently do not have any email address set up.
+          You should really add an email address so you can receive notifications, reset your password, etc.
+        </p>
+        <!-- Форма для добавления email -->
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="email">Add Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Email</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
