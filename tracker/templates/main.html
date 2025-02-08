@@ -33,7 +33,7 @@
             margin: 0;
             font-size: 1.5rem;
             font-weight: 700;
-            color:rgb(14, 186, 209);
+            color:#14b8a6;
         }
         .navbar .balance {
             font-size: 1rem;
@@ -45,7 +45,7 @@
             margin-left: 10px;
         }
         .auth-buttons button {
-            background-color:rgb(14, 186, 209);
+            background-color:#14b8a6;
             color: white;
             padding: 8px 12px;
             border: none;
@@ -87,7 +87,7 @@
             list-style: none;
         }
         .button {
-            background-color:rgb(14, 186, 209);
+            background-color:#14b8a6;
             color: white;
             padding: 10px;
             border: none;
@@ -97,7 +97,7 @@
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color:rgb(14, 186, 209);
+            background-color:#14b8a6;
         }
         .add-transaction {
             display: flex;
@@ -222,6 +222,16 @@
         <!-- Add Transaction -->
         <div class="card">
             <h4>Add Transaction ➕</h4>
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
             <form method="POST" class="row g-3">
                 {% csrf_token %}
                 <div class="col-md-6">

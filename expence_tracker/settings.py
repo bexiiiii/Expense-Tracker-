@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-u(a(ql)xwvf7-=#b$e_$7%00%(e(ed+ypvtnsmdx_5u=gmd*!m"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
 
-# DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,12 +51,12 @@ INSTALLED_APPS = [
     'allauth.account',
     "allauth.socialaccount",
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.telegram',
+    'allauth.socialaccount.providers.telegram', 
 ]
 SITE_ID = 1
 
 ACCOUNT_FORMS = {
-    'login': 'tracker.forms.CustomLoginForm',
+    'login': 'tracker.forms.CustomLoginForm',  
 }
 
 MIDDLEWARE = [
@@ -102,7 +102,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -123,8 +122,13 @@ WSGI_APPLICATION = "expence_tracker.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        'NAME': 'expence_tracker',
+        'USER': 'postgres',
+        'PASSWORD': '234Bex456',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        
     }
 }
 
@@ -175,8 +179,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
-LOGIN_REDIRECT_URL = ""
-LOGOUT_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = '/'
 
 
 
@@ -185,3 +189,8 @@ LOGOUT_REDIRECT_URL = ''
 # EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 # SENDGRID_API_KEY = 'ваш_ключ_с_доступом_из_SendGrid'
 # DEFAULT_FROM_EMAIL = '1edukz00l@gmail.com'  # Например, admin@yourdomain.com
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
