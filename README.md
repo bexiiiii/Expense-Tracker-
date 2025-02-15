@@ -43,6 +43,15 @@ venv\Scripts\activate    # Windows
 pip install -r requirements.txt
 ```
 
+
+## Установите зависимости
+
+Установите все необходимые зависимости из файла `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
 ### 4.3. Настройка базы данных
 
 Открываем `settings.py` и указываем параметры PostgreSQL:
