@@ -117,9 +117,11 @@ Expense-Tracker/
 
 1. Настроить переменные окружения (`.env` файл)
 2. Использовать Gunicorn и Nginx для продакшн-версии
-3. Настроить статические файлы (`collectstatic`)
+   
 
 ## 9. Алгоритм работы
+
+![IMAGE 2025-02-15 08:37:05](https://github.com/user-attachments/assets/11b342c7-40f7-4ae7-b675-44af9f46661c)
 
 
 
