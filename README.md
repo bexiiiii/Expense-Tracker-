@@ -70,6 +70,9 @@ python manage.py runserver
 
 Приложение доступно по адресу: `http://127.0.0.1:8000`
 
+# Структура проекта Expense-Tracker
+
+```bash
 Expense-Tracker/
 ├── expense_tracker/        # Основное приложение Django
 │   ├── __init__.py         # Инициализация пакета
@@ -94,7 +97,9 @@ Expense-Tracker/
 ├── requirements.txt        # Список зависимостей проекта
 ├── manage.py               # Скрипт управления проектом Django
 └── README.md               # Этот файл
-## 6. API (если есть)
+```
+
+
 
 
 
