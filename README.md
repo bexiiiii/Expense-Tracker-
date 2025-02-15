@@ -22,6 +22,7 @@ Expense Tracker — это приложение для отслеживания 
   - **ReportLab** — для генерации PDF-отчетов
   - **OpenPyXL** — для работы с Excel
   - **django-allauth** — для аутентификации
+  - **django unfold - для хорошего визуального вида админки
 
 
 
