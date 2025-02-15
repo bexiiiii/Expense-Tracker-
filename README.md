@@ -1,144 +1,128 @@
-
 # Expense Tracker
 
-## Описание
+## 1. Описание проекта
 
-Expense Tracker — это приложение для отслеживания расходов. Оно позволяет пользователю добавлять, редактировать и удалять записи о своих расходах. Приложение также поддерживает экспорт данных в форматах PDF и Excel.
+Expense Tracker — это веб-приложение на Django для управления личными финансами. Оно позволяет пользователям отслеживать свои расходы, распределять их по категориям, экспортировать отчеты в различные форматы и управлять бюджетом.
 
-## Требования
+## 2. Основные функции
 
-Перед запуском проекта убедитесь, что у вас установлены следующие инструменты:
+- **Регистрация и аутентификация пользователей**
+- **Добавление, редактирование и удаление расходов**
+- **Категоризация расходов**
+- **Экспорт данных в PDF и Excel**
+- **Аналитика расходов** (графики, отчеты)
+- **Поиск и фильтрация записей**
 
-- Python 3.x
-- PostgreSQL
+## 3. Технологии
 
-## Установка и настройка
+- **Backend**: Django
+- **Frontend**: HTML, CSS
+- **База данных**: PostgreSQL
+- **Дополнительные библиотеки**:
+  - **ReportLab** — для генерации PDF-отчетов
+  - **OpenPyXL** — для работы с Excel
+  - **django-allauth** — для аутентификации
 
-### Установите PostgreSQL
 
-Если PostgreSQL не установлен, скачайте и установите его с официального сайта: https://www.postgresql.org/download/
 
-### Клонируйте репозиторий
+## 4. Установка и настройка
 
-Склонируйте проект на вашу локальную машину:
+### 4.1. Клонирование репозитория
 
 ```bash
 git clone https://github.com/bexiiiii/Expense-Tracker-.git
-cd Expense-Tracker
+cd Expense-Tracker-
 ```
 
-### Создайте виртуальное окружение
-
-Создайте виртуальное окружение:
+### 4.2. Создание виртуального окружения и установка зависимостей
 
 ```bash
 python -m venv venv
-```
-
-### Активируйте виртуальное окружение
-
-На Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-На macOS и Linux:
-
-```bash
-source venv/bin/activate
-```
-
-### Установите зависимости
-
-Установите все необходимые зависимости из файла `requirements.txt`:
-
-```bash
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate    # Windows
 pip install -r requirements.txt
 ```
 
-### Настройте базу данных PostgreSQL
+### 4.3. Настройка базы данных
 
-Создайте базу данных и пользователя в PostgreSQL, используя команду:
+Открываем `settings.py` и указываем параметры PostgreSQL:
 
-```bash
-psql -U postgres
-```
-
-Создайте базу данных:
-
-```bash
-CREATE DATABASE expense_tracker;
-CREATE USER your_user WITH PASSWORD 'your_password';
-GRANT ALL PRIVILEGES ON DATABASE expense_tracker TO your_user;
-```
-
-### Настройте переменные окружения
-
-Создайте файл `.env` в корневой директории проекта и добавьте в него следующие строки:
-
-```ini
-SECRET_KEY=your_secret_key
-DEBUG=True
-DB_NAME=expense_tracker
-DB_USER=your_user
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-
-
-### Настройте авторизацию через Google и Telegram
- Добавьте следующие настройки в `settings.py` для использования аутентификации через `Google и Telegram`:
-
-
-```ini
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': 'ваш_новый_client_id_google',
-            'secret': 'ваш_новый_client_secret_google',
-            'key': ''
-        }
-    },
-    'telegram': {
-        'APP': {
-            'client_id': 'ваш_новый_telegram_bot_name',  # Имя бота без @
-            'secret': 'ваш_новый_telegram_bot_token',  # Токен от BotFather
-        },
-        'AUTH_PARAMS': {'auth_date_validity': 100},
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'expense_db',
+        'USER': 'username',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 ```
 
-
-### Примените миграции
-
-Примените миграции для настройки базы данных:
+### 4.4. Применение миграций и запуск сервера
 
 ```bash
 python manage.py migrate
-```
-
-### Создайте суперпользователя
-
-Создайте суперпользователя для админ-панели:
-
-```bash
-python manage.py createsuperuser
-```
-
-### Запустите сервер
-
-Запустите сервер:
-
-```bash
+python manage.py createsuperuser  # Создание администратора
 python manage.py runserver
 ```
 
-Теперь вы можете открыть проект в браузере по адресу [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+Приложение доступно по адресу: `http://127.0.0.1:8000`
 
-## Лицензия
+## 5. Структура проекта
 
-Этот проект лицензирован под MIT License.
+```bash
+Expense-Tracker/
+├── expense_tracker/        # Основное приложение Django
+│   ├── migrations/         # Миграции базы данных
+│   ├── templates/          # HTML-шаблоны
+│   ├── static/             # CSS, JS, изображения
+│   ├── views.py            # Логика представлений
+│   ├── models.py           # Модели базы данных
+│   ├── urls.py             # Маршрутизация
+│   ├── forms.py            # Django Forms
+├── api/                    # API (если реализован)
+│   ├── serializers.py      # Сериализация данных
+│   ├── views.py            # API-вьюхи
+│   ├── urls.py             # API-маршруты
+├── requirements.txt        # Список зависимостей
+├── manage.py               # Django-скрипт
+└── README.md               # Этот файл
+```
+
+## 6. API (если есть)
+
+Если в проекте есть API, добавьте примеры запросов:
+
+```bash
+GET /api/expenses/            # Получить список расходов
+POST /api/expenses/           # Добавить новый расход
+PUT /api/expenses/{id}/       # Редактировать расход
+DELETE /api/expenses/{id}/    # Удалить расход
+```
+
+## 7. Экспорт данных
+
+Приложение позволяет экспортировать данные в PDF и Excel:
+
+- **PDF**: `/export/pdf/`
+- **Excel**: `/export/excel/`
+
+## 8. Развертывание
+
+Для развертывания на сервере (например, Heroku, DigitalOcean):
+
+1. Настроить переменные окружения (`.env` файл)
+2. Использовать Gunicorn и Nginx для продакшн-версии
+3. Настроить статические файлы (`collectstatic`)
+
+## 9. Алгоритм работы
+
+
+
+## 10. Контакты
+
+Разработчик: **bexiiiii**\
+GitHub: [https://github.com/bexiiiii](https://github.com/bexiiiii)
+
